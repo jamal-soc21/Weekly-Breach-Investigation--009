@@ -1,0 +1,68 @@
+Weekly Breach Investigation
+Breach: Underminr — CDN Abuse to Bypass DNS Filtering
+Analyst: Jamal Mahmoad
+Date: 2026-05-28
+
+1. Executive Summary
+🚨 Underminr is a stealthy technique abusing shared CDN infrastructure to bypass protective DNS filtering.
+By manipulating SNI and HTTP Host headers while using legitimate DNS responses, attackers can disguise malicious traffic behind trusted domains.
+This undermines DNS‑based defenses and enables covert C2 communication, data exfiltration, VPN tunneling, and policy circumvention.
+
+2. Attack Timeline
+2018: Major cloud providers mitigate domain fronting.
+
+2022–2025: Emergence of Underminr in advanced campaigns.
+
+2026: ADAMnetworks publishes detailed research and detection guidance.
+
+Exploitation Path:
+
+User resolves a trusted domain (e.g., whatismyipaddress.com).
+
+Connection is redirected to a malicious domain (e.g., evilsite.ai) on the same CDN edge IP.
+
+Attackers manipulate SNI/Host headers.
+
+Traffic appears legitimate but reaches malicious endpoints.
+
+3. MITRE ATT&CK Mapping
+Command & Control: Protocol Tunneling (T1572)
+
+Command & Control: Abuse of External Remote Services (T1133)
+
+Defense Evasion: Encrypted Channel / SNI Manipulation (T1573)
+
+Exfiltration: Exfiltration Over Alternative Protocol (T1048)
+
+4. Detection Opportunities
+Log Sources:
+
+DNS query logs
+
+TLS handshake metadata
+
+CDN edge IP traffic
+
+Detection Rules:
+
+Correlate DNS queries with actual connection endpoints.
+
+Alert on mismatches between DNS resolution and SNI.
+
+Monitor direct connections to CDN edge IPs without DNS.
+
+5. Recommended Mitigations
+Deploy deep traffic correlation between DNS and TLS/SNI.
+
+Enforce full proxying or traffic decryption in sensitive environments.
+
+Block unauthorized direct‑to‑IP connections on CDN infrastructure.
+
+Use threat intelligence feeds to identify abused domains.
+
+Collaborate with CDN providers for coordinated mitigation.
+
+Analyst Notes
+Underminr revives the concept of domain fronting with more advanced evasion, creating a blind spot for DNS‑based defenses.
+As IPv4 exhaustion drives more services onto shared infrastructure, the risk of cross‑tenant abuse will grow.
+Organizations must move beyond DNS filtering alone and adopt multi‑layered traffic analysis to counter this evolving threat
