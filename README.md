@@ -1,2 +1,6 @@
 # Weekly-Breach-Investigation--009
-Underminr is a stealthy CDN abuse technique that bypasses DNS filtering, enabling hidden C2, data exfiltration, and policy evasion behind trusted domains.
+Underminr is a newly uncovered technique that abuses shared CDN infrastructure to slip past protective DNS filtering. Instead of relying on obvious domain fronting, attackers manipulate how DNS requests, TLS handshakes, and CDN edge routing are validated, making malicious traffic look like it belongs to trusted services. This allows them to hide command‑and‑control channels, exfiltrate data, tunnel VPNs, and bypass enterprise policies — all while blending in with normal traffic.
+
+What makes Underminr especially dangerous is its ability to exploit the blind spots in DNS reputation systems and partial TLS inspection. By redirecting encrypted connections from a legitimate domain to a hidden malicious one on the same CDN edge IP, defenders see only “approved” traffic while the real destination remains concealed. Linked to advanced China‑aligned groups, this method shows how attackers are pooling resources and adapting shared infrastructure for stealthy operations.
+
+As IPv4 exhaustion pushes more services onto shared CDN platforms, the risk of cross‑tenant abuse grows. Without coordinated defenses across CDN providers, domain owners, and security vendors, Underminr could erode trust in DNS‑based protections and reshape how organizations enforce network security
